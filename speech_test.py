@@ -12,7 +12,7 @@ def downloadFile(url, fileName):
     fp.close()
 
 def getGoogleSpeechURL(phrase):
-    googleTranslateURL = "http://translate.google.com/translate_tts?tl=en&"
+    googleTranslateURL = "https://translate.google.com/#en/th"
     parameters = {'q': phrase}
     data = urllib.urlencode(parameters)
     googleTranslateURL = "%s%s" % (googleTranslateURL,data)
@@ -21,7 +21,7 @@ def getGoogleSpeechURL(phrase):
 def speakSpeechFromText(phrase):
     googleSpeechURL = getGoogleSpeechURL(phrase)
     downloadFile(googleSpeechURL,"tts.mp3")
-    os.system("mplayer2 tts.mp3 -af extrastereo=0 &")
+    os.system("mplayer tts.mp3 -af extrastereo=0 &")
    
 speakSpeechFromText("testing, testing, 1 2 3.")
 
