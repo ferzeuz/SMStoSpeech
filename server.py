@@ -2,7 +2,7 @@
 
 from flask import Flask, request, redirect
 import twilio.twiml
-import urllib, pycurl, os
+import urllib, pycurl, os, urllib.parse
 
 def downloadFile(url, fileName):
         fp = open(fileName, "wb")
@@ -14,9 +14,9 @@ def downloadFile(url, fileName):
         fp.close()
 
 def getGoogleSpeechURL(phrase):
-        googleTranslateURL = "https://translate.google.com/#en/th"
+        googleTranslateURL = "http://translate.google.com/translate_tts?tl=en&"
         parameters = {'q': phrase}
-        data = urllib.urlencode(parameters)
+        data = urllib.parse.urlencode(parameters)
         googleTranslateURL = "%s%s" % (googleTranslateURL,data)
         return googleTranslateURL
 
