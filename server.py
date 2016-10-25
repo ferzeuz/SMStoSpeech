@@ -3,11 +3,18 @@ from espeak import espeak
 import twilio.twiml
 import urllib, pycurl, os
 
+def getPhrase(phrase):
+	textPhrase = ""
+	parameters = {'q': phrase}
+	data = urllib.urlencode(parameters)
+	textPhrase = "%s%s" % (textPhrase,data)
+	return textPhrase
+	print ("getPhrase on")
+
 def speakSpeechFromText(phrase):
-	phrase = sms
+	phrase = getPhrase(phrase)
 	espeak.synth(phrase)
 	print ("Espeak on")
-
 
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
