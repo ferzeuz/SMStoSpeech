@@ -3,9 +3,24 @@ from espeak import espeak
 import twilio.twiml
 import urllib, pycurl, os
 
+class ESpeak:
+	def __init__(self, amplitude=100, word_gap=10, capitals=1, line_length=1,
+                 pitch=50, speed=80, voice='en', spell_punctuation=[], split=''):
+		
+        args = [('amplitude',         ['-a', amplitude, int]),
+                ('word_gap',          ['-g', word_gap, int]),
+                ('capitals',          ['-k', capitals, int]),
+                ('line_length',       ['-l', line_length, int]),
+                ('pitch',             ['-p', pitch, int]),
+                ('speed',             ['-s', speed, int]),
+                ('voice',             ['-v', voice, str]),
+                ('spell_punctuation', ['--punct=', ''.join(spell_punctuation),str]),
+                ('split',             ['--split=', split, str])]
+        self.args = collections.OrderedDict(args)
+
 def getPhrase(phrase):
 	textPhrase = ""
-	parameters = {'q': phrase}
+	parameters = {'': phrase}
 	data = urllib.urlencode(parameters)
 	textPhrase = "%s%s" % (textPhrase,data)
 	return textPhrase
