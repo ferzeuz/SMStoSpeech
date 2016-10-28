@@ -36,7 +36,7 @@ def getPhrase(phrase):
 
 def speakSpeechFromText(phrase):
 	phrase = getPhrase(phrase)
-	espeak.synth(phrase) -s100
+	espeak.synth(phrase)
 	print("Espeak on")
 app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
