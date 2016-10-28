@@ -6,7 +6,7 @@ import urllib, pycurl, os
 def getPhrase(phrase):
 	textPhrase = ""
 	parameters = {"": phrase}
-	data = str.encode(parameters)
+	data = urllib.urlencode(parameters)
 	textPhrase = "%s%s" % (textPhrase,data)
 	return textPhrase
 
